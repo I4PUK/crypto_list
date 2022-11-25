@@ -25,6 +25,7 @@
 
 ## Превью 
 Главный экран:
+
 <img src="https://user-images.githubusercontent.com/47809649/204003954-9a07d780-adb4-4323-9714-35d4fa7b26b0.png" width="300" height="500" />
 
 Подробная информация о валюте:
