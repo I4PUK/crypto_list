@@ -1,16 +1,33 @@
 # crypto_list
+Тестовое задание
 
-Test task
+## Задача:
+Сделать главную страницу на которой сверху будет основной баланс, его можно обновить по нажатию. Ниже будет список всех валют, их пользователь может обновлять отдельно. Пользователь может назначить одну из валют как основную и она будет отображаться в верхнем поле. 
 
-## Getting Started
+Процессы первоначальной загрузки и обновления имитировать в блоке со случайным временем ответа.
 
-This project is a starting point for a Flutter application.
+Добавить на 1 странице переход на вторую. Страница настроек где переключается тема, меняется во всем приложении. 
 
-A few resources to get you started if this is your first Flutter project:
+Хороший дизайн приветствуется.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Использованные технологии:
+  - Dart/Flutter
+  - Clean Architecture 
+  - Dependency Injection: (пакет get_it)
+  - State managers: BloC, Cubit
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Текущее состояние проекта
+### В проекте реализованы и работают следующие элементы
+  - Загрузка и отображение списка персонажей из интеренета
+  - Смена темы на темную или светлую
+  - Экран детальной информации о валюте
+  - По нажатию на иконку с сердечком, меняется Main Currency 
+
+## Превью 
+Главный экран:
+
+<img src="https://user-images.githubusercontent.com/47809649/204003954-9a07d780-adb4-4323-9714-35d4fa7b26b0.png" width="300" height="500" />
+
+Подробная информация о валюте:
+
+<img src="https://user-images.githubusercontent.com/47809649/204004065-3f687854-6a27-4eb0-a2c3-ff1c68b67076.png" width="300" height="500" />
