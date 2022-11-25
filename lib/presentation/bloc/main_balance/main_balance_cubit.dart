@@ -1,37 +1,35 @@
 import 'package:crypto_list/data/models/ticker.dart';
 import 'package:crypto_list/domain/entities/ticker.dart';
-import 'package:crypto_list/domain/use_cases/get_all_tickers.dart';
-import 'package:crypto_list/presentation/bloc/crypto_list_state.dart';
+import 'package:crypto_list/domain/use_cases/update_main_balance.dart';
+import 'package:crypto_list/presentation/bloc/main_balance/main_balance_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CryptoListCubit extends Cubit<CryptoListState> {
-  final GetAllTickers getAllTickers;
+class MainBalanceCubit extends Cubit<MainBalanceState> {
+  final UpdateMainBalance updateMainBalance;
 
   TickerEntity _mainTicker = TickerModel(name: 'USDT', value: 1);
-  List<TickerEntity>? tickersList;
 
-  CryptoListCubit({required this.getAllTickers}) : super(const CryptoListEmpty());
+  MainBalanceCubit({required this.updateMainBalance})
+      : super(const MainBalanceEmpty());
 
   TickerEntity get mainTicker => _mainTicker;
 
-  void loadTickerList() async {
-    emit(const CryptoListLoading());
-
-    final authResultOrError = await getAllTickers(GetAllTickersParams());
-    authResultOrError.fold(
-      (error) => emit(CryptoListError(message: error.toString())),
-      (tickersList) {
-        this.tickersList = tickersList;
-        emit(CryptoListSuccess(this.tickersList ?? tickersList));
-      },
-    );
-  }
-
-  void setMainCurrency(TickerEntity newTicker){
+  void setMainTicker(TickerEntity newTicker) {
+    emit(const MainBalanceLoading());
     _mainTicker = newTicker;
-    emit(CryptoListUpdatedMain(ticker: mainTicker));
+    emit(MainBalanceSuccess(ticker: mainTicker));
   }
 
-  void navigateToDetail(){
+  void updateMainTickerBalance() async {
+    emit(const MainBalanceLoading());
+    final faulureOrResult =
+        await updateMainBalance(UpdateMainBalanceParams(mainTicker));
+
+    faulureOrResult.fold(
+      (error) => emit(
+        const MainBalanceError(message: 'Unable to update balance'),
+      ),
+      (value) => setMainTicker(value),
+    );
   }
 }

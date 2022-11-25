@@ -3,6 +3,8 @@ import 'package:crypto_list/domain/entities/ticker.dart';
 import 'package:dartz/dartz.dart';
 
 // contract for repository
-abstract class PersonRepository{
-  Future<Either<Failure,List<Map<String, double>>>> getAllTickers();
+abstract class TickerRepository{
+  Future<Either<Failure,List<TickerEntity>>> getAllTickers();
+
+  Future<Either<Failure, TickerEntity>> updateMainBalance(TickerEntity ticker);
 }
